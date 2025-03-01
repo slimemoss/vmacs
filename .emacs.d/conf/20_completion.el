@@ -14,6 +14,7 @@
   :ensure t
   :custom
   (ivy-prescient-retain-classic-highlighting t)
+  (prescient-save-file "~/.emacs.d/persistent/prescient-save.el")
   :config
   (ivy-prescient-mode 1)
   (prescient-persist-mode 1))

@@ -25,4 +25,3 @@
 	    (nerd-icons-install-fonts t))
   :config
   (all-the-icons-nerd-fonts-prefer))
-

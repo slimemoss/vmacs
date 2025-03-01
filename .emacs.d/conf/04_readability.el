@@ -11,5 +11,9 @@
 
 (use-package whitespace
   :ensure t
-  :config
-  (whitespace-mode 1))
+  :custom
+  (whitespace-style '(face
+                      tabs spaces trailing space-before-tab
+		      empty space-after-tab
+		      space-mark tab-mark
+		      missing-newline-at-eof)))

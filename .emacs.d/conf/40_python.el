@@ -1,13 +1,14 @@
 (use-package python-mode
   :ensure t
   :hook
-  ((python-mode . lsp)))
+  (python-mode . lsp))
 
 (use-package pyvenv
   :ensure t)
 
 (use-package pyvenv-auto
-  :hook ((python-mode . pyvenv-auto-run)))
+  :hook
+  (python-mode . pyvenv-auto-run))
 
 (use-package py-isort
   :ensure t
@@ -16,7 +17,8 @@
 
 (use-package py-autopep8
   :ensure t
-  :hook ((python-mode) . py-autopep8-mode))
+  :hook
+  (python-mode . py-autopep8-mode))
 
 (use-package pylsp-rope
   :ensure t
