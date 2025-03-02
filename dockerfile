@@ -42,28 +42,29 @@ RUN apt-get update \
     libgccjit0 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" TZ="Asia/Tokyo" apt-get install -y \
+    git curl unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -OL https://github.com/yuru7/PlemolJP/releases/download/v2.0.3/PlemolJP_v2.0.3.zip \
+    && unzip PlemolJP_v2.0.3.zip -d /usr/share/fonts/ \
+    && rm -r PlemolJP_v2.0.3.zip \
+    && fc-cache -fv
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" TZ="Asia/Tokyo" apt-get install -y \
+    python3.12 python3.12-venv \
+    && rm -rf /var/lib/apt/lists/*
+
 COPY --from=builder /usr/local/bin/emacs /usr/local/bin/emacs
 COPY --from=builder /usr/local/libexec/emacs /usr/local/libexec/emacs
 COPY --from=builder /usr/local/share/emacs /usr/local/share/emacs
 COPY --from=builder /emacs/native-lisp /usr/local/native-lisp
 
-RUN apt-get update \
-    && DEBIAN_FRONTEND="noninteractive" TZ="Asia/Tokyo" apt-get install -y \
-    git curl unzip \
-    emacs-mozc emacs-mozc-bin \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN curl -OL https://github.com/yuru7/PlemolJP/releases/download/v2.0.3/PlemolJP_v2.0.3.zip \
-    && mkdir -p ~/.local/share/fonts \
-    && unzip PlemolJP_v2.0.3.zip -d ~/.local/share/fonts \
-    && rm -r PlemolJP_v2.0.3.zip \
-    && fc-cache -f -v
-
-# python
-RUN apt-get update \
-    && DEBIAN_FRONTEND="noninteractive" TZ="Asia/Tokyo" apt-get install -y \
-    python3.12 python3.12-venv \
-    && rm -rf /var/lib/apt/lists/*
+COPY ./mozc/build/usr/lib/mozc/* /usr/lib/mozc/
+COPY ./mozc/build/usr/bin/* /usr/bin/
+COPY ./mozc/build//usr/share/emacs/site-lisp/emacs-mozc/* /usr/share/emacs/site-lisp/emacs-mozc/
 
 COPY .emacs.d/conf /root/.emacs.d/conf
 COPY .emacs.d/early-init.el /root/.emacs.d/early-init.el
