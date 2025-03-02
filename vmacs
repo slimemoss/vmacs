@@ -1,3 +1,32 @@
 #!/bin/bash
 
+set -e  # エラー時に即終了
+
+# ヘルプメッセージ
+usage() {
+    echo -e "\033[1;32mUsage:\033[0m $0 [WORKDIR]"
+    echo -e "\n\033[1;33mOptions:\033[0m"
+    echo -e "  -h, --help       ヘルプを表示"
+    exit 0
+}
+
+# オプション解析
+if [[ $# -gt 0 ]]; then
+    case "$1" in
+        -h|--help) usage ;;
+        -*)
+            echo -e "\033[1;31mエラー:\033[0m 無効なオプション: $1"
+            usage
+	    exit 1
+            ;;
+        *)
+            WORKDIR=$(cd "$1" 2>/dev/null && pwd) || {
+                echo -e "\033[1;31mエラー:\033[0m 無効なディレクトリ: $1"
+		usage
+                exit 1
+            }
+            ;;
+    esac
+fi
+
 ~/work/vmacs/vmacs.sh "$@"
