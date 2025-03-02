@@ -1,22 +1,15 @@
 (use-package flycheck
   :ensure t
   :custom
-  (flycheck-display-errors-delay 0)
-  (flycheck-posframe-position 'point-bottom-left-corner)
-  (flycheck-posframe-border-width 3))
+  (flycheck-disabled-checkers '(python-flake8)))
 
 (use-package lsp-mode
   :ensure t
   :custom
-  (lsp-enable-snippet nil)
-  (lsp-diagnostics-provider :flycheck)
-  (lsp-eldoc-enable-hover nil)
+  ;; lsp-doctor
+  (gc-cons-threshold (* 100 (* 1024 1024)))
+  (read-process-output-max (* 1024 1024))
 
-  ;; python
-  (lsp-pylsp-plugins-autopep8-enabled t)
-  (lsp-pylsp-plugins-isort-enabled t)
-  (lsp-pylsp-plugins-rope-autoimport-enabled t)
-  (lsp-pylsp-plugins-flake8-ignore '("E501"))
   :commands lsp)
 
 (use-package lsp-ui
@@ -34,9 +27,11 @@
   (lsp-ui-doc-include-signature t)
   (lsp-ui-doc-position 'at-point)
 
-  (lsp-ui-sideline-ignore-duplicate t)
-  (lsp-ui-flycheck-enable t)
-  (lsp-ui-sideline-enable nil))
+  (lsp-ui-sideline-enable t)
+  (lsp-ui-sideline-show-diagnostics t)
+  (lsp-ui-sideline-show-hover nil)
+  (lsp-ui-sideline-show-code-actions nil)
+  (lsp-ui-sideline-ignore-duplicate nil))
 
 (use-package popup
   :ensure t)

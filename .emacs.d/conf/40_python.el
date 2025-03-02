@@ -1,12 +1,15 @@
 (use-package python-mode
   :ensure t
   :hook
-  (python-mode . lsp))
+  (python-mode . lsp)
+  :custom
+  (lsp-pylsp-plugins-pydocstyle-enabled nil))
 
 (use-package pyvenv
   :ensure t)
 
 (use-package pyvenv-auto
+  :ensure t
   :hook
   (python-mode . pyvenv-auto-run))
 
@@ -19,9 +22,3 @@
   :ensure t
   :hook
   (python-mode . py-autopep8-mode))
-
-(use-package pylsp-rope
-  :ensure t
-  :straight (fatebook :repo "sonofhypnos/pylsp-rope.el" :host github
-                      :files ("pylsp-rope.el"))
-  :commands fatebook-create-question)
