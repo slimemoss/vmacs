@@ -1,12 +1,6 @@
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")
-        ("org" . "http://orgmode.org/elpa/")))
-
-(setq package-enable-at-startup nil)
-
 (defvar bootstrap-version)
 (setq straight-base-dir "~/.emacs.d/persistent/")
+(setq straight-use-package-by-default t)
 (let ((bootstrap-file
        (expand-file-name
         "straight/repos/straight.el/bootstrap.el"

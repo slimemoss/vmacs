@@ -1,3 +1,5 @@
+(setq package-enable-at-startup nil)
+
 (setq package-user-dir "~/.emacs.d/persistent/elpa")
 
 (when (boundp 'native-comp-eln-load-path)
