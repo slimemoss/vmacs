@@ -15,5 +15,5 @@
   (whitespace-style '(face
                       tabs spaces trailing
 		      empty space-after-tab))
-  :config
-  (global-whitespace-mode))
+  :hook
+  (flycheck-mode . whitespace-mode))
