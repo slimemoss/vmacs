@@ -50,6 +50,7 @@ fi
 
 docker run -itd --rm \
        -v $HOME/.gitconfig:$CHOME/.gitconfig \
+       -v $HOME/.ssh:$CHOME/.ssh \
        -v $IMAGE-fonts:$CHOME/.local/share/fonts \
        -v $IMAGE-persistent:$CHOME/.emacs.d/persistent \
        -v $WORKDIR:/work \
