@@ -62,6 +62,7 @@ COPY --from=builder /usr/local/libexec/emacs /usr/local/libexec/emacs
 COPY --from=builder /usr/local/share/emacs /usr/local/share/emacs
 COPY --from=builder /emacs/native-lisp /usr/local/native-lisp
 
+RUN mkdir /root/.config
 COPY ./mozc/build/usr/lib/mozc/* /usr/lib/mozc/
 COPY ./mozc/build/usr/bin/* /usr/bin/
 COPY ./mozc/build//usr/share/emacs/site-lisp/emacs-mozc/* /usr/share/emacs/site-lisp/emacs-mozc/
