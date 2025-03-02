@@ -57,6 +57,12 @@ RUN apt-get update \
     python3.12 python3.12-venv \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" TZ="Asia/Tokyo" apt-get install -y \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
+RUN npm -g install pyright
+
 COPY --from=builder /usr/local/bin/emacs /usr/local/bin/emacs
 COPY --from=builder /usr/local/libexec/emacs /usr/local/libexec/emacs
 COPY --from=builder /usr/local/share/emacs /usr/local/share/emacs
