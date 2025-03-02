@@ -9,16 +9,16 @@ usage() {
     echo "  If WORKDIR is not specified, defaults to ~/work."
     echo "Options:"
     echo "  --help      Show this help message and exit."
-    echo "  --build     Build the Docker image before running."
+    echo "  --nobuild   Don't build the Docker image before running."
     exit 0
 }
 
-BUILD=false
+NOBUILD=false
 
 while [[ "$1" == --* ]]; do
     case "$1" in
         --help) usage ;;
-        --build) BUILD=true ;;
+        --nobuild) NOBUILD=true ;;
         *) echo "Error: Unknown option: $1" >&2; usage; exit 1 ;;
     esac
     shift
@@ -43,12 +43,12 @@ fi
 
 WORKDIR=$(cd "$WORKDIR" && pwd)
 
-if [ "$BUILD" = true ]; then
+if [ "$NOBUILD" = false ]; then
     docker build --target builder -t $IMAGE-builder $BASEDIR
     docker build -t $IMAGE $BASEDIR
 fi
 
-docker run -it --rm \
+docker run -itd --rm \
        -v $HOME/.gitconfig:$CHOME/.gitconfig \
        -v $IMAGE-fonts:$CHOME/.local/share/fonts \
        -v $IMAGE-persistent:$CHOME/.emacs.d/persistent \
