@@ -16,7 +16,9 @@
   :config
   (load-theme 'doom-dracula t)
   (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config))
+  (doom-themes-neotree-config)
+  (custom-set-faces
+   `(font-lock-comment-face ((t (:foreground "#98a9cd"))))))
 
 (use-package doom-modeline
   :ensure t
