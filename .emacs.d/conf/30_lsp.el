@@ -10,6 +10,7 @@
   (gc-cons-threshold (* 100 (* 1024 1024)))
   (read-process-output-max (* 1024 1024))
 
+  (lsp-session-file "/root/.emacs.d/persistent/.lsp-session-v1")
   :commands lsp)
 
 (use-package lsp-ui
