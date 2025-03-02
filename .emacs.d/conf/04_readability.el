@@ -13,7 +13,7 @@
   :ensure t
   :custom
   (whitespace-style '(face
-                      tabs spaces trailing space-before-tab
-		      empty space-after-tab
-		      space-mark tab-mark
-		      missing-newline-at-eof)))
+                      tabs spaces trailing
+		      empty space-after-tab))
+  :config
+  (global-whitespace-mode))
